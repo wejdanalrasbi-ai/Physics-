@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مختبر الفيزياء الممتع</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;700&display=swap">
+<style>
+:root{--bg:#fff4dc;--ink:#1f2340;--card:#fff;--line:#1f2340;--pri:#5b3df5;--acc:#ff4f81;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14173a;--ink:#fff3d6;--card:#222659;--line:#fff3d6;--pri:#a493ff;--acc:#ff7da3}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tajawal,Tahoma,sans-serif;font-size:17px;line-height:1.7}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 32px}
+.hero{position:relative;overflow:hidden;margin:0 -16px 18px;padding:34px 22px 30px;background:linear-gradient(135deg,#5b3df5,#ff4f81 70%,#ffb347);color:#fff;border-radius:0 0 36px 36px;border-bottom:4px solid var(--line)}
+h1{font-family:Lalezar,Tajawal,sans-serif;font-weight:400;font-size:52px;line-height:1.05;margin:0 0 6px;text-shadow:3px 3px 0 #1f2340}
+.hero p{margin:0;max-width:20em;font-size:18px}
+.fl{position:absolute;font-size:34px;animation:fl 5s ease-in-out infinite}
+.fl:nth-child(1){left:8%;top:14%}.fl:nth-child(2){left:30%;bottom:8%;animation-delay:-2s}.fl:nth-child(3){left:6%;bottom:30%;animation-delay:-3.5s}
+@keyframes fl{50%{transform:translateY(-14px) rotate(14deg)}}
+@media (prefers-reduced-motion:reduce){.fl{animation:none}}
+h2{font-family:Lalezar,Tajawal,sans-serif;font-weight:400;font-size:30px;margin:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{display:block;text-align:right;font:inherit;color:#1f2340;background:var(--c);border:3px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 6px 0 var(--line);cursor:pointer;transition:transform .15s}
+.card:hover,.card:active{transform:translateY(-4px) rotate(-1deg)}
+.card:focus-visible,.btn:focus-visible,.back:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.card em{display:block;font-style:normal;font-size:44px;line-height:1.2}
+.card b{display:block;font-family:Lalezar,Tajawal,sans-serif;font-weight:400;font-size:22px;line-height:1.2}
+.card span{font-size:14px;line-height:1.4;display:block}
+.lab{background:var(--card);border:3px solid var(--line);border-radius:24px;padding:14px;box-shadow:0 6px 0 var(--line)}
+.back{font:inherit;font-weight:700;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px 0;margin-bottom:6px}
+canvas{width:100%;height:auto;display:block;border-radius:16px;border:3px solid var(--line);touch-action:none;background:#20254d;margin-top:8px}
+.msg{min-height:3.4em;font-weight:700;margin:10px 0 4px}
+.why{background:var(--bg);border-radius:16px;padding:10px 14px;margin-top:8px;border-right:6px solid var(--acc)}
+.why b{color:var(--acc)}
+.row{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+input[type=range]{flex:1;min-width:120px;accent-color:var(--pri);height:34px}
+.btn{font:inherit;font-weight:700;padding:8px 16px;border:3px solid var(--line);border-radius:14px;background:var(--acc);color:#fff;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+.btn[aria-pressed="true"]{background:var(--pri)}
+.meter{height:18px;border:3px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px;background:var(--bg)}
+.meter i{display:block;height:100%;width:0;background:var(--acc)}
+[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="home">
+<div class="hero"><span class="fl">⚛️</span><span class="fl">🌈</span><span class="fl">🚀</span>
+<h1>مختبر الفيزياء الممتع</h1><p>سبع تجارب تلعبها بيدك، وتكتشف بها أسرار الكون.</p></div>
+<div class="grid">
+<button class="card" style="--c:#ffd166" data-go="static"><em>🎈</em><b>البالون السحري</b><span>الكهرباء الساكنة</span></button>
+<button class="card" style="--c:#7ee0c3" data-go="light"><em>🔦</em><b>صيد الضوء</b><span>انعكاس الضوء</span></button>
+<button class="card" style="--c:#ff9eb5" data-go="magnet"><em>🧲</em><b>شدّ وطرد</b><span>المغناطيس</span></button>
+<button class="card" style="--c:#9ec5ff" data-go="water"><em>🐟</em><b>السمكة المخادعة</b><span>أين السمكة فعلاً؟</span></button>
+<button class="card" style="--c:#c9b6ff" data-go="pendulum"><em>🕰️</em><b>أرجوحة الزمن</b><span>البندول</span></button>
+<button class="card" style="--c:#ffb27a" data-go="gravity"><em>🪐</em><b>سباق السقوط</b><span>الجاذبية</span></button>
+<button class="card" style="--c:#f6e65b" data-go="circuit"><em>💡</em><b>أضئ المصباح</b><span>الدائرة الكهربائية</span></button>
+</div>
+</section>
+
+<section class="lab" id="static" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>🎈 البالون السحري</h2><p>اسحب البالون وافركه بالشعر، ثم قرّبه من القصاصات.</p>
+<canvas id="c1" width="360" height="300"></canvas><div class="meter"><i id="m1"></i></div>
+<div class="msg" id="t1"></div>
+<div class="why"><b>لماذا؟</b> الفرك ينقل إلكترونات من الشعر إلى البالون فيصبح سالب الشحنة، فيجذب القصاصات المتعادلة.</div></section>
+
+<section class="lab" id="light" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>🔦 صيد الضوء</h2><p>دوّر المرآة حتى يصيب الليزر النجمة.</p>
+<canvas id="c2" width="360" height="300"></canvas>
+<div class="row"><span>🪞</span><input type="range" id="r2" min="-80" max="80" value="0" aria-label="زاوية المرآة"><button class="btn" id="n2">نجمة جديدة</button></div>
+<div class="msg" id="t2"></div>
+<div class="why"><b>لماذا؟</b> زاوية سقوط الضوء تساوي زاوية ارتداده، وتُقاس الزاويتان من الخط المنقط العمودي على المرآة.</div></section>
+
+<section class="lab" id="magnet" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>🧲 شدّ وطرد</h2><p>اسحب المغناطيس الأيمن نحو الأيسر، ثم اقلبه وجرّب.</p>
+<canvas id="c3" width="360" height="300"></canvas>
+<div class="row"><button class="btn" id="f3">🔄 اقلب المغناطيس</button></div>
+<div class="msg" id="t3"></div>
+<div class="why"><b>لماذا؟</b> الأقطاب المتشابهة تتنافر والمختلفة تتجاذب، وتزداد القوة بسرعة كلما اقتربت.</div></section>
+
+<section class="lab" id="water" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>🐟 السمكة المخادعة</h2><p>السمكة ليست حيث تراها! غيّر زاوية نظرك، ثم اضغط داخل الماء لتُلقي الصنارة.</p>
+<canvas id="c4" width="360" height="300"></canvas>
+<div class="row"><span>👁️</span><input type="range" id="r4" min="15" max="60" value="40" aria-label="زاوية نظرك"></div>
+<div class="msg" id="t4"></div>
+<div class="why"><b>لماذا؟</b> الخط الأصفر المنقط هو مسار الضوء الحقيقي، والأبيض المتقطع هو الخط المستقيم الذي يتخيله دماغك. الضوء القادم من السمكة ينحني عند خروجه من الماء، فيظن دماغك أنه جاء في خط مستقيم من مكان أقل عمقاً. لذلك تبدو الأشياء تحت الماء أقرب إلى السطح مما هي عليه.</div></section>
+
+<section class="lab" id="pendulum" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>🕰️ أرجوحة الزمن</h2><p>غيّر طول الخيط وانظر: هل تتأرجح أسرع أم أبطأ؟</p>
+<canvas id="c5" width="360" height="300"></canvas>
+<div class="row"><span>📏</span><input type="range" id="r5" min="20" max="100" value="60" aria-label="طول الخيط"></div>
+<div class="msg" id="t5"></div>
+<div class="why"><b>لماذا؟</b> الخيط الأطول يحتاج وقتاً أكبر لكل ذهاب وإياب. أما وزن الكرة فلا يغيّر الزمن!</div></section>
+
+<section class="lab" id="gravity" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>🪐 سباق السقوط</h2><p>اختر كوكباً وأسقط الكرتين، الثقيلة والخفيفة.</p>
+<canvas id="c6" width="360" height="300"></canvas>
+<div class="row" id="pl"><button class="btn" aria-pressed="true" data-g="9.8">🌍 الأرض</button><button class="btn" aria-pressed="false" data-g="1.6">🌙 القمر</button><button class="btn" aria-pressed="false" data-g="24.8">🟠 المشتري</button><button class="btn" id="d6">أسقط!</button></div>
+<div class="msg" id="t6"></div>
+<div class="why"><b>لماذا؟</b> الجاذبية تسحب كل الأجسام بالتسارع نفسه مهما كان وزنها. الفرق الحقيقي بين كوكب وآخر.</div></section>
+
+<section class="lab" id="circuit" hidden><button class="back" data-go="home">→ كل التجارب</button>
+<h2>💡 أضئ المصباح</h2><p>أغلق المفتاح وزد عدد البطاريات.</p>
+<canvas id="c7" width="360" height="300"></canvas>
+<div class="row"><button class="btn" id="s7" aria-pressed="false">المفتاح: مفتوح</button><span>🔋</span><input type="range" id="r7" min="1" max="4" value="1" aria-label="عدد البطاريات"></div>
+<div class="msg" id="t7"></div>
+<div class="why"><b>لماذا؟</b> التيار يسري فقط في دائرة مغلقة. وكلما زادت البطاريات ازداد دفع الإلكترونات فيسطع المصباح أكثر.</div></section>
+
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const ids=['home','static','light','magnet','water','pendulum','gravity','circuit'];
+function show(){const h=location.hash.slice(1);const id=ids.includes(h)?h:'home';ids.forEach(i=>$('#'+i).hidden=i!==id);window.scrollTo(0,0)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)location.hash=b.dataset.go});
+addEventListener('hashchange',show);show();
+function pos(cv,e){const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)*cv.width/r.width,y:(e.clientY-r.top)*cv.height/r.height}}
+function grab(cv,d,m,u){cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);d(pos(cv,e))});cv.addEventListener('pointermove',e=>m(pos(cv,e)));cv.addEventListener('pointerup',u);cv.addEventListener('pointercancel',u)}
+function txt(g,s,x,y,z){g.font=z+'px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(s,x,y)}
+const vis=id=>!$('#'+id).hidden;
+
+/* static */
+(()=>{const cv=$('#c1'),g=cv.getContext('2d'),B={x:200,y:120,r:34},H={x:60,y:70,r:44};let drag=false,ch=0,last;
+const bits=Array.from({length:14},(_,i)=>({x:70+i*17,y:278,vx:0,vy:0,a:Math.random()*6}));
+grab(cv,p=>{if(Math.hypot(p.x-B.x,p.y-B.y)<B.r+14){drag=true;last=p}},p=>{if(!drag)return;B.x=Math.max(30,Math.min(330,p.x));B.y=Math.max(30,Math.min(250,p.y));if(Math.hypot(B.x-H.x,B.y-H.y)<H.r+B.r)ch=Math.min(100,ch+Math.hypot(p.x-last.x,p.y-last.y)*.5);last=p},()=>drag=false);
+(function loop(){requestAnimationFrame(loop);if(!vis('static'))return;ch=Math.max(0,ch-.06);g.clearRect(0,0,360,300);g.fillStyle='#3a3f7a';g.fillRect(0,288,360,12);g.fillStyle='#fff';txt(g,'👩‍🦱',H.x,H.y,64);let n=0;
+bits.forEach(b=>{const dx=B.x-b.x,dy=B.y-b.y,d=Math.hypot(dx,dy)||1;if(ch>5&&d<170){const f=ch*.0016*Math.min(1,150/d);b.vx+=dx/d*f*3;b.vy+=dy/d*f*3;n+=d<B.r+12}
+b.vy+=.25;b.vx*=.9;b.vy*=.93;b.x+=b.vx;b.y+=b.vy;if(d<B.r+4){b.x=B.x-dx/d*(B.r+4);b.y=B.y-dy/d*(B.r+4);b.vx=b.vy=0}if(b.y>280){b.y=280;b.vy=0}
+g.save();g.translate(b.x,b.y);g.rotate(b.a);g.fillStyle='#ffd166';g.fillRect(-6,-4,12,8);g.restore()});
+g.fillStyle='#ff5c8a';g.beginPath();g.ellipse(B.x,B.y,B.r*.85,B.r,0,0,7);g.fill();g.fillStyle='#fff';txt(g,ch>5?'− − −':'',B.x,B.y,18);
+$('#m1').style.width=ch+'%';$('#t1').textContent=ch<5?'افرك البالون بالشعر لتشحنه!':n>2?'رائع! القصاصات التصقت بالبالون ✨':'البالون مشحون! قرّبه من القصاصات.'})()})();
+
+/* light */
+(()=>{const cv=$('#c2'),g=cv.getContext('2d'),S={x:40,y:60},M={x:200,y:200};let T;
+function newT(){const a=-(Math.random()*1.4+.1);T={x:Math.min(330,M.x+Math.cos(a)*130),y:Math.max(30,M.y+Math.sin(a)*130)};draw()}
+function draw(){const th=$('#r2').value*Math.PI/180,mx=Math.cos(th),my=Math.sin(th);let dx=M.x-S.x,dy=M.y-S.y;const L=Math.hypot(dx,dy);dx/=L;dy/=L;let nx=my,ny=-mx;if(nx*dx+ny*dy>0){nx=-nx;ny=-ny}
+const dot=dx*nx+dy*ny,rx=dx-2*dot*nx,ry=dy-2*dot*ny;g.clearRect(0,0,360,300);g.fillStyle='#fff';txt(g,'⭐',T.x,T.y,34);
+g.strokeStyle='#ff4d6d';g.lineWidth=4;g.lineCap='round';g.beginPath();g.moveTo(S.x,S.y);g.lineTo(M.x,M.y);g.lineTo(M.x+rx*500,M.y+ry*500);g.stroke();
+g.setLineDash([5,6]);g.strokeStyle='#ffffff99';g.lineWidth=2;g.beginPath();g.moveTo(M.x-nx*70,M.y-ny*70);g.lineTo(M.x+nx*70,M.y+ny*70);g.stroke();g.setLineDash([]);
+g.strokeStyle='#9be7ff';g.lineWidth=10;g.beginPath();g.moveTo(M.x-mx*55,M.y-my*55);g.lineTo(M.x+mx*55,M.y+my*55);g.stroke();g.fillStyle='#fff';txt(g,'🔦',S.x-14,S.y-14,34);
+const t=(T.x-M.x)*rx+(T.y-M.y)*ry,dist=Math.abs((T.x-M.x)*ry-(T.y-M.y)*rx),ang=Math.round(Math.acos(Math.min(1,Math.abs(dot)))*180/Math.PI);
+$('#t2').textContent=t>0&&dist<18?'أصبت النجمة! 🎉 السقوط = الانعكاس = '+ang+'°':'السقوط '+ang+'° والانعكاس '+ang+'° — دوّر المرآة!'}
+$('#r2').oninput=draw;$('#n2').onclick=()=>{$('#r2').value=0;newT()};newT()})();
+
+/* magnet */
+(()=>{const cv=$('#c3'),g=cv.getContext('2d'),A=70,W=110,H=44;let x=250,v=0,flip=false,drag=false,off=0;
+$('#f3').onclick=()=>flip=!flip;
+grab(cv,p=>{if(Math.abs(p.x-x)<W/2+10&&Math.abs(p.y-150)<H){drag=true;off=x-p.x;v=0}},p=>{if(drag)x=Math.max(A+W+4,Math.min(340-W/2,p.x+off))},()=>drag=false);
+function mag(c,l,r,a,b){g.fillStyle=l;g.fillRect(c-W/2,150-H/2,W/2,H);g.fillStyle=r;g.fillRect(c,150-H/2,W/2,H);g.strokeStyle='#fff';g.lineWidth=3;g.strokeRect(c-W/2,150-H/2,W,H);g.fillStyle='#fff';txt(g,a,c-W/4,150,26);txt(g,b,c+W/4,150,26)}
+(function loop(){requestAnimationFrame(loop);if(!vis('magnet'))return;const eA=A+W/2,eB=x-W/2,d=Math.max(6,eB-eA);let m='اسحب المغناطيس نحو الآخر ثم أفلته.';
+if(!drag){v+=Math.min(3,9000/(d*d))*(flip?-1:1)*.4;v*=.92;x+=v;if(x-W/2<eA+2){x=eA+2+W/2;v=0}if(x>340-W/2){x=340-W/2;v*=-.3}if(d<150)m=flip?'N و S يتجاذبان! التصق المغناطيسان 🧲':'N و N يتنافران! المغناطيس يُدفع بعيداً 💨'}else if(d<150)m='اشعر بالقوة تزداد كلما اقتربت!';
+g.clearRect(0,0,360,300);if(d<150){g.strokeStyle='#ffffff55';g.lineWidth=2;for(let i=-2;i<=2;i++){g.beginPath();g.moveTo(eA,150+i*8);g.quadraticCurveTo((eA+eB)/2,150+i*22,eB,150+i*8);g.stroke()}}
+mag(A,'#2f80ff','#ff3b4f','S','N');flip?mag(x,'#2f80ff','#ff3b4f','S','N'):mag(x,'#ff3b4f','#2f80ff','N','S');$('#t3').textContent=m})()})();
+
+/* water */
+(()=>{const cv=$('#c4'),g=cv.getContext('2d'),F={x:270,y:230},SY=120,D=F.y-SY;let sp=null;
+function geo(){const r=$('#r4').value*Math.PI/180,i=Math.asin(Math.sin(r)/1.33),P={x:F.x-D*Math.tan(i),y:SY};return{P,E:{x:P.x-Math.sin(r)*110,y:SY-Math.cos(r)*110},G:{x:F.x,y:SY+D*Math.tan(i)/Math.tan(r)}}}
+function draw(){const{P,E,G}=geo();g.clearRect(0,0,360,300);g.fillStyle='#2a8fd8aa';g.fillRect(0,SY,360,180);g.strokeStyle='#fff';g.lineWidth=3;g.beginPath();g.moveTo(0,SY);g.lineTo(360,SY);g.stroke();
+g.setLineDash([6,6]);g.lineWidth=2;g.strokeStyle='#ffffffaa';g.beginPath();g.moveTo(P.x,P.y);g.lineTo(G.x,G.y);g.stroke();g.setLineDash([]);
+g.setLineDash([1,10]);g.strokeStyle='#ffe066';g.lineWidth=5;g.lineCap='round';g.beginPath();g.moveTo(F.x,F.y);g.lineTo(P.x,P.y);g.lineTo(E.x,E.y);g.stroke();g.setLineDash([]);
+g.fillStyle='#fff';txt(g,'🐟',G.x,G.y,38);txt(g,'السمكة',G.x,G.y-28,13);txt(g,'ينحني هنا',P.x-32,SY+16,12);txt(g,'👁️',E.x,E.y,34);if(sp&&sp.hit&&sp.p>=1)txt(g,'🎉',F.x,F.y,40);
+let m='اضغط داخل الماء في المكان الذي تُلقي فيه الصنارة.';
+if(sp){const q=sp.p,x=E.x+(sp.to.x-E.x)*q,y=E.y+(sp.to.y-E.y)*q;g.strokeStyle='#fff';g.lineWidth=2;g.beginPath();g.moveTo(E.x,E.y);g.lineTo(x,y);g.stroke();g.strokeStyle='#ff4f81';g.lineWidth=4;g.beginPath();g.arc(x,y+7,7,-1.2,Math.PI);g.stroke();g.fillStyle='#ff4f81';g.beginPath();g.arc(x,y-2,3,0,7);g.fill();
+m=q<1?'الصنارة تغوص...':sp.hit?'اصطدتها! 🎉 السمكة الحقيقية أعمق مما كانت تبدو.':(sp.to.y<F.y?'لم تلتقط شيئاً! 😅 السمكة ليست حيث تراها، جرّب مكاناً أعمق.':'قريب! 😅 عدّل المكان قليلاً وحاول مجدداً.')}
+$('#t4').textContent=m}
+cv.style.cursor='crosshair';cv.addEventListener('pointerdown',e=>{const p=pos(cv,e);if(p.y<SY+8)return;sp={to:{x:p.x,y:p.y},hit:Math.hypot(p.x-F.x,p.y-F.y)<26,p:0}});$('#r4').oninput=()=>sp=null;
+(function loop(){requestAnimationFrame(loop);if(!vis('water'))return;if(sp&&sp.p<1)sp.p=Math.min(1,sp.p+.04);draw()})()})();
+
+/* pendulum */
+(()=>{const cv=$('#c5'),g=cv.getContext('2d');let th=.7,w=0,t0=performance.now();
+$('#r5').oninput=()=>{th=.7;w=0};
+(function loop(t){requestAnimationFrame(loop);const dt=Math.min(.03,(t-t0)/1000);t0=t;if(!vis('pendulum'))return;const L=+$('#r5').value;
+for(let i=0;i<5;i++){w+=-(981/L)*Math.sin(th)*dt/5;th+=w*dt/5}
+const px=L*2.6,bx=180+Math.sin(th)*px,by=30+Math.cos(th)*px;g.clearRect(0,0,360,300);g.fillStyle='#3a3f7a';g.fillRect(100,20,160,10);
+g.strokeStyle='#fff';g.lineWidth=3;g.beginPath();g.moveTo(180,30);g.lineTo(bx,by);g.stroke();g.fillStyle='#ffb347';g.beginPath();g.arc(bx,by,18,0,7);g.fill();g.strokeStyle='#fff';g.stroke();
+$('#t5').textContent='طول الخيط '+L+' سم ← ذهاب وإياب كل '+(2*Math.PI*Math.sqrt(L/981)).toFixed(2)+' ثانية'})(t0)})();
+
+/* gravity */
+(()=>{const cv=$('#c6'),g=cv.getContext('2d');let G=9.8,t=-1,tl=0,done=false;
+function draw(){const s=t<0?0:t;g.clearRect(0,0,360,300);g.fillStyle='#3a3f7a';g.fillRect(0,272,360,28);
+const y=Math.min(272,40+.5*G*s*s*24);const land=40+.5*G*s*s*24>=272-0;g.fillStyle='#ff4f81';g.beginPath();g.arc(120,Math.min(y,250),22,0,7);g.fill();
+g.fillStyle='#ffe066';g.beginPath();g.arc(240,Math.min(y,263),9,0,7);g.fill();
+$('#t6').textContent=t<0?'اختر الكوكب ثم اضغط «أسقط!»':land?'وصلتا معاً بعد '+Math.sqrt(2*10/G).toFixed(2)+' ثانية! 🏁':'تسقطان...'}
+$('#pl').addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(!b)return;G=+b.dataset.g;document.querySelectorAll('[data-g]').forEach(x=>x.setAttribute('aria-pressed',x===b));t=-1;draw()});
+$('#d6').onclick=()=>{t=0;tl=performance.now()};
+(function loop(n){requestAnimationFrame(loop);if(t>=0&&vis('gravity')){t=(n-tl)/1000;if(t>Math.sqrt(2*10/G))t=Math.sqrt(2*10/G)+.001}if(vis('gravity'))draw()})(0);draw()})();
+
+/* circuit */
+(()=>{const cv=$('#c7'),g=cv.getContext('2d');let on=false,off=0;
+$('#s7').onclick=e=>{on=!on;e.target.setAttribute('aria-pressed',on);e.target.textContent='المفتاح: '+(on?'مغلق':'مفتوح')};
+const X0=60,X1=300,Y0=80,Y1=230,P=2*(X1-X0+Y1-Y0);
+function pt(s){s=(s%P+P)%P;const w=X1-X0,h=Y1-Y0;if(s<w)return[X0+s,Y0];s-=w;if(s<h)return[X1,Y0+s];s-=h;if(s<w)return[X1-s,Y1];s-=w;return[X0,Y1-s]}
+(function loop(){requestAnimationFrame(loop);if(!vis('circuit'))return;const n=+$('#r7').value;g.clearRect(0,0,360,300);
+g.strokeStyle='#cfd3ff';g.lineWidth=5;g.strokeRect(X0,Y0,X1-X0,Y1-Y0);g.fillStyle='#20254d';g.fillRect(150,Y0-6,60,12);g.fillRect(150,Y1-6,60,12);g.fillRect(X0-8,120,16,70);
+for(let i=0;i<n;i++){g.fillStyle='#4cd964';g.fillRect(X0-14,125+i*16,28,11)}
+g.strokeStyle='#cfd3ff';g.lineWidth=5;g.beginPath();g.moveTo(150,Y1);g.lineTo(on?210:200,on?Y1:Y1-34);g.stroke();
+if(on){off+=n*1.6;g.fillStyle='#ffe066';for(let i=0;i<24;i++){const p=pt(off+i*P/24);g.beginPath();g.arc(p[0],p[1],4,0,7);g.fill()}}
+if(on){const r=20+n*14,gr=g.createRadialGradient(180,Y0,4,180,Y0,r);gr.addColorStop(0,'rgba(255,240,150,'+(.35+n*.16)+')');gr.addColorStop(1,'rgba(255,240,150,0)');g.fillStyle=gr;g.beginPath();g.arc(180,Y0,r,0,7);g.fill()}
+g.fillStyle=on?'#fff7b0':'#8a8fb8';g.beginPath();g.arc(180,Y0,16,0,7);g.fill();g.strokeStyle='#fff';g.lineWidth=3;g.stroke();
+$('#t7').textContent=!on?'الدائرة مفتوحة، لا يسري تيار. أغلق المفتاح!':n==1?'أضاء المصباح بخفوت. زد البطاريات!':n<4?'أسطع! '+n+' بطاريات تدفع إلكترونات أكثر ✨':'ساطع جداً! 🌟'})()})();
+</script>
+</body>
+</html>
